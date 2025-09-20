@@ -1,0 +1,37 @@
+name: 'Build and Test'
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v5
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal --logger trx --results-directory ./
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: dotnet-test-results
+        path: ./*.trx
+    - name: Test Report
+      uses: dorny/test-reporter@v2
+      if: ${{ !cancelled() }}
+      with:
+        name: Test Report
+        path: ./*.trx
+        reporter: dotnet-trx

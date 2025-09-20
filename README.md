@@ -1,4 +1,13 @@
-# Project
+# Packet Capture Tools
+
+## Requirements
+
+- [dotnet](https://dotnet.microsoft.com/en-us/)
+- [net standard 2.0](https://learn.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-0)
+
+## How to build
+
+
 
 > This repo has been populated by an initial template to help get you started. Please
 > make sure to update the content to build a great experience for community-building.
