@@ -232,10 +232,12 @@ public class AnalysisControllerTest
 
         public void Render(IRenderer renderer)
         {
+            renderer.StartSection();
             foreach (var kv in _analysis.CountBySecond)
             {
                 renderer.AddKeyValue(kv.Key.ToString(), kv.Value.ToString());
             }
+            renderer.EndSection();
         }
     }
 

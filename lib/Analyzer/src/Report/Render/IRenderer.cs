@@ -42,10 +42,20 @@ public interface IRenderer
     void AddHeader(string? title, string? description);
 
     /// <summary>
+    /// Starts a section.
+    /// </summary>
+    void StartSection();
+
+    /// <summary>
     /// Renders a section header. Typically used to delimiter sections within a report.
     /// </summary>
     /// <param name="title">Section header title text.</param>
     void AddSectionTitle(string title);
+
+    /// <summary>
+    /// Ends a section.
+    /// </summary>
+    void EndSection();
 
     /// <summary>
     /// Renders a message.

@@ -100,4 +100,14 @@ public class TextRenderer : IRenderer
     {
         return _stringBuilder.ToString();
     }
+
+    /// <inheritdoc />
+    public void StartSection()
+    {
+    }
+
+    /// <inheritdoc />
+    public void EndSection()
+    {
+    }
 }

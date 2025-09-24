@@ -18,12 +18,14 @@ public abstract class Section : ISection
     /// <inheritdoc />
     public void Render(IRenderer renderer)
     {
+        renderer.StartSection();
         if (!string.IsNullOrWhiteSpace(SectionTitle))
         {
             renderer.AddSectionTitle(SectionTitle);
         }
 
         RenderSection(renderer);
+        renderer.EndSection();
     }
 
     /// <summary>
