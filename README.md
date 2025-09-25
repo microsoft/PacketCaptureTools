@@ -36,7 +36,7 @@ How to use:
 - Define an analysis configuration or use one of the existing ones (`DefaultTrafficAnalysisConfiguration`, `TdsTrafficAnalysisConfiguration`). The `IAnalysisConfiguration` interface defines the middlewares that are used to process packets, the analysis that will be performed and the sections that will be rendered in the report.
 - Create an `AnalysisController` with the analysis configuration and the path/stream of the packet capture file(s).
 - Execute the analysis (_this operation might take some seconds/minutes depending on the size of the packet capture file(s)_)
-- Create a rendered (such as `TextRenderer` or `JsonRenderer`) to render the report based on the analysis. A report can be rendered in multiple formats.
+- Create a renderer (such as `TextRenderer` or `JsonRenderer`) to render the report based on the analysis. A report can be rendered in multiple formats.
 
 Example code:
 
