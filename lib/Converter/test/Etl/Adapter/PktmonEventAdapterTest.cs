@@ -16,9 +16,11 @@ namespace Microsoft.PacketCapture.Converter.Test.Etl.Adapter;
 [SupportedOSPlatform("windows")]
 public class PktmonEventAdapterTest
 {
+    public static bool IsWindows => OperatingSystem.IsWindows();
+
     private readonly PktmonEventAdapter adapter = new();
 
-    [Fact]
+    [Fact(Skip = "Platform not supported", SkipUnless = nameof(IsWindows))]
     public void Convert_ValidPktmonPacketFrameEvent_ValidCapturedPacket()
     {
         // Arrange
@@ -54,7 +56,7 @@ public class PktmonEventAdapterTest
         result.Should().BeNull();
     }
 
-    [Fact]
+    [Fact(Skip = "Platform not supported", SkipUnless = nameof(IsWindows))]
     public void Convert_ValidPktmonPacketFrameDropEvent_Null()
     {
         // Arrange
@@ -69,7 +71,7 @@ public class PktmonEventAdapterTest
         packet.Should().BeNull();
     }
 
-    [Fact]
+    [Fact(Skip = "Platform not supported", SkipUnless = nameof(IsWindows))]
     public void Convert_ValidUnsupportedPktmonEvent_Null()
     {
         // Arrange
@@ -84,7 +86,7 @@ public class PktmonEventAdapterTest
         packet.Should().BeNull();
     }
 
-    [Fact]
+    [Fact(Skip = "Platform not supported", SkipUnless = nameof(IsWindows))]
     public void Convert_PktmonPacketNoDateTime_CapturedPacketWithMinEpochTime()
     {
         // Arrange
@@ -108,7 +110,7 @@ public class PktmonEventAdapterTest
         packet.TimeCaptured.Should().Be(new DateTime(1970, 1, 1));
     }
 
-    [Fact]
+    [Fact(Skip = "Platform not supported", SkipUnless = nameof(IsWindows))]
     public void Convert_PktmonEventWithNullGuid_Null()
     {
         // Arrange
@@ -122,7 +124,7 @@ public class PktmonEventAdapterTest
         packet.Should().BeNull();
     }
 
-    [Fact]
+    [Fact(Skip = "Platform not supported", SkipUnless = nameof(IsWindows))]
     public void Convert_PktmonEventWithNonMatchingGuid_Null()
     {
         // Arrange
@@ -136,7 +138,7 @@ public class PktmonEventAdapterTest
         packet.Should().BeNull();
     }
 
-    [Fact]
+    [Fact(Skip = "Platform not supported", SkipUnless = nameof(IsWindows))]
     public void Convert_ValidPktmonPacketFrameEventNoPayload_Null()
     {
         // Arrange
@@ -157,7 +159,7 @@ public class PktmonEventAdapterTest
         packet.Should().BeNull();
     }
 
-    [Fact]
+    [Fact(Skip = "Platform not supported", SkipUnless = nameof(IsWindows))]
     public void Convert_ValidPktmonPacketFrameEventNoOriginalSize_Null()
     {
         // Arrange
@@ -178,7 +180,7 @@ public class PktmonEventAdapterTest
         packet.Should().BeNull();
     }
 
-    [Fact]
+    [Fact(Skip = "Platform not supported", SkipUnless = nameof(IsWindows))]
     public void Convert_ValidPktmonPacketFrameEventPayloadNotByteArray_Null()
     {
         // Arrange
@@ -200,7 +202,7 @@ public class PktmonEventAdapterTest
         packet.Should().BeNull();
     }
 
-    [Fact]
+    [Fact(Skip = "Platform not supported", SkipUnless = nameof(IsWindows))]
     public void Convert_ValidPktmonPacketFrameEventOriginalSizeNotUShort_Null()
     {
         // Arrange

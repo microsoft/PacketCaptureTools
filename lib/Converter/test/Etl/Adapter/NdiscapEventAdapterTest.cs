@@ -16,6 +16,8 @@ namespace Microsoft.PacketCapture.Converter.Test.Etl.Adapter;
 [SupportedOSPlatform("windows")]
 public class NdiscapEventAdapterTest
 {
+    public static bool IsWindows => OperatingSystem.IsWindows();
+
     private const string ProviderId = "2ed6006e-4729-4609-b423-3ee7bcd678ef";
     private const int EventId = 1001;
     private const uint PacketSize = 3;
@@ -24,7 +26,7 @@ public class NdiscapEventAdapterTest
 
     private readonly NdiscapEventAdapter adapter = new();
 
-    [Fact]
+    [Fact(Skip = "Platform not supported", SkipUnless = nameof(IsWindows))]
     public void Convert_ValidNdiscapFragmentEvent_ValidCapturedPacket()
     {
         // Arrange
@@ -60,7 +62,7 @@ public class NdiscapEventAdapterTest
         result.Should().BeNull();
     }
 
-    [Fact]
+    [Fact(Skip = "Platform not supported", SkipUnless = nameof(IsWindows))]
     public void Convert_ValidUnsupportedNdiscapEvent_Null()
     {
         // Arrange
@@ -75,7 +77,7 @@ public class NdiscapEventAdapterTest
         packet.Should().BeNull();
     }
 
-    [Fact]
+    [Fact(Skip = "Platform not supported", SkipUnless = nameof(IsWindows))]
     public void Convert_NdiscapPacketNoDateTime_CapturedPacketWithMinEpochTime()
     {
         // Arrange
@@ -99,7 +101,7 @@ public class NdiscapEventAdapterTest
         packet.TimeCaptured.Should().Be(new DateTime(1970, 1, 1));
     }
 
-    [Fact]
+    [Fact(Skip = "Platform not supported", SkipUnless = nameof(IsWindows))]
     public void Convert_NdiscapEventWithNullGuid_Null()
     {
         // Arrange
@@ -113,7 +115,7 @@ public class NdiscapEventAdapterTest
         packet.Should().BeNull();
     }
 
-    [Fact]
+    [Fact(Skip = "Platform not supported", SkipUnless = nameof(IsWindows))]
     public void Convert_NdiscapEventWithNonMatchingGuid_Null()
     {
         // Arrange
@@ -127,7 +129,7 @@ public class NdiscapEventAdapterTest
         packet.Should().BeNull();
     }
 
-    [Fact]
+    [Fact(Skip = "Platform not supported", SkipUnless = nameof(IsWindows))]
     public void Convert_NdiscapFragmentEventNoPayload_ReturnsNull()
     {
         // Arrange
@@ -148,7 +150,7 @@ public class NdiscapEventAdapterTest
         packet.Should().BeNull();
     }
 
-    [Fact]
+    [Fact(Skip = "Platform not supported", SkipUnless = nameof(IsWindows))]
     public void Convert_ValidNdiscapPacketNoOriginalSize_ReturnsNull()
     {
         // Arrange
@@ -169,7 +171,7 @@ public class NdiscapEventAdapterTest
         packet.Should().BeNull();
     }
 
-    [Fact]
+    [Fact(Skip = "Platform not supported", SkipUnless = nameof(IsWindows))]
     public void Convert_ValidNdiscapPacketFrameEventPayloadNotByteArray_ReturnsNull()
     {
         // Arrange
@@ -191,7 +193,7 @@ public class NdiscapEventAdapterTest
         packet.Should().BeNull();
     }
 
-    [Fact]
+    [Fact(Skip = "Platform not supported", SkipUnless = nameof(IsWindows))]
     public void Convert_ValidNdiscapFragmentEventOriginalSizeNotUint_ReturnsNull()
     {
         // Arrange
@@ -199,7 +201,7 @@ public class NdiscapEventAdapterTest
         var packetParams = new List<object>
         {
             Payload,
-            "This is payload"
+            "This is the payload"
         };
         record.Setup(rec => rec.ProviderId).Returns(new Guid(ProviderId));
         record.Setup(rec => rec.Id).Returns(EventId);
